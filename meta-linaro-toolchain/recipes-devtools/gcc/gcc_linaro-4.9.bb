@@ -10,7 +10,10 @@ ARM_INSTRUCTION_SET_armv4 = "arm"
 do_configure_prepend() {
         # Easiest way to stop bad RPATHs getting into the library since we have a
         # broken libtool here
-        sed -i -e 's/hardcode_into_libs=yes/hardcode_into_libs=no/' ${S}/libcc1/configure
+
+        if [ -f ${S}/libcc1/configure ]; then 
+          sed -i -e 's/hardcode_into_libs=yes/hardcode_into_libs=no/' ${S}/libcc1/configure
+        fi
 }
 
 BBCLASSEXTEND = "nativesdk"
